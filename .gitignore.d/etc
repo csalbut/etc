@@ -1,0 +1,5 @@
+*
+!/.etc
+!/.etc/tmux.conf
+!/.gitignore.d
+!/.gitignore.d/etc
