@@ -1,5 +1,6 @@
 *
 !/.etc
+!/.etc/setup.sh
 !/.etc/tmux.conf
 !/.gitignore.d
 !/.gitignore.d/etc
