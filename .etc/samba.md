@@ -12,7 +12,7 @@ systemctl [status|show|start|stop|reload|restart|enable] <service_name>
 ## Required packages
 
 - samba -- Samba server. Also allows other hosts to address this host by name [1].
-- smbclient (dependency of samba) -- Allows to access samba shares at remote servers. Allows to address other hosts by their names using WINS. To enable it, add â€œwinsâ€ to the â€œhostsâ€ line in /etc/nsswitch.conf. 
+- smbclient (dependency of samba) -- Allows to access samba shares at remote servers. Allows to address other hosts by their names using WINS. To enable it, add “wins” to the “hosts” line in /etc/nsswitch.conf.
 
 ## Server settings
 
@@ -52,7 +52,7 @@ Define shares in `/etc/samba/smb.conf`
 
 `systemctl enable smbd nmbd`
 
-Remember to `testparm -s` and `systemctl restart smbd nmbd` after editing configuration files. 
+Remember to `testparm -s` and `systemctl restart smbd nmbd` after editing configuration files.
 
 ## Monitoring and verification
 
