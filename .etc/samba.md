@@ -2,6 +2,14 @@
 
 This guide provides step by step description of configuring samba server for a small local network. The operating system of choice for the server is Arch linux.
 
+## General information
+
+- Domain is ...
+- Workgroup is ...
+- WINS
+- Winbind
+
+
 ## General commands
 
 Service control
@@ -54,11 +62,47 @@ Define shares in `/etc/samba/smb.conf`
 
 Remember to `testparm -s` and `systemctl restart smbd nmbd` after editing configuration files.
 
+A linux user account should exist for samba user. Create one.
+```
+useradd -c "samba user alpha" -d /dev/null -s /bin/false alpha
+```
+
+Samba uses separate password database. Set the password for the samba user.
+```
+pdbedit -a -u alpha
+```
+
+There are three samba users: alpha, beta, and gamma. User alpha is the most priviledged, user gamma -- the least. Priviledge graduation is achieved by adding users to groups.
+
+```
+user    groups
+--------------------------
+alpha   alpha, beta, gamma
+beta    beta, gamma
+gamma   gamma
+```
+
+```
+usermod -a -G gamma beta
+usermod -a -G gamma,beta alpha
+```
+
+Deny ssh access to newly created users by adding this line to `/etc/ssh/sshd_config`
+```
+DenyUsers alpha beta gamma
+```
+
 ## Monitoring and verification
 
 `testparm` checks validity of `smb.conf` contents.
+
+List servers, workgroups and public shares on a server:
+```
+smbclient -L hostname -U%
+```
 
 ## References
 - [1] https://wiki.archlinux.org/index.php/Network_configuration#Set_the_hostname
 - [2] https://wiki.archlinux.org/index.php/Samba
 - [3] https://wiki.archlinux.org/index.php/Samba/Tips_and_tricks
+- [4] http://superuser.com/questions/752136/samba-with-individual-users-per-shared-directory
