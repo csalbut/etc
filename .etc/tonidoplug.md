@@ -49,6 +49,6 @@ And disable head retraction altogether.
 hdparm -B 254 /dev/sda
 ```
 
-todo: make it persistent
-todo: check [idle3 solution](https://news.ycombinator.com/item?id=9633080). It seems like it can update firmware of the drive.
+- todo: make it persistent
+- todo: check [idle3 solution](https://news.ycombinator.com/item?id=9633080). It seems like it can update firmware of the drive.
 
