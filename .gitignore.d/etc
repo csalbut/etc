@@ -1,6 +1,10 @@
 *
 !/.etc
+!/.etc/arch_admin.md
+!/.etc/samba.md
 !/.etc/setup.sh
 !/.etc/tmux.conf
+!/.etc/tonidoplug.md
 !/.gitignore.d
 !/.gitignore.d/etc
+!/README.md
