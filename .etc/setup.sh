@@ -16,3 +16,8 @@ ln -s ~/.etc/tmux.conf ~/.tmux.conf
 # pull vcsh-modules
 # vcsh <repo> submodule update --init
 #
+# point ansible to the correct python version.
+# node-side solution:
+# sudo ln -s /usr/bin/python2.7 /usr/bin/python
+# or control-side solution: ansible inventory entry:
+# 192.168.1.15 ansible_python_interpreter=/usr/bin/python2

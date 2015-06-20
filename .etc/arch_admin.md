@@ -15,3 +15,6 @@ Remove cached versions of uninstalled packages
 ```
 paccache -ruk0
 ```
+Setup ssh keys for passwordless login
+http://www.linuxproblem.org/art_9.html
+
