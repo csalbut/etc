@@ -4,6 +4,7 @@
 !/.etc/samba.md
 !/.etc/sambaserver.yml
 !/.etc/setup.sh
+!/.etc/smb.conf
 !/.etc/tmux.conf
 !/.etc/tonidoplug.md
 !/.gitignore.d
