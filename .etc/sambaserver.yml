@@ -1,0 +1,80 @@
+---
+ - hosts: marvin
+   sudo: yes
+
+   tasks:
+
+    - name: create group alpha
+      group:
+        name: alpha
+        gid: 2000
+
+    - name: create group beta
+      group:
+        name: beta
+        gid: 2001
+
+    - name: create group gamma
+      group:
+        name: gamma
+        gid: 2002
+
+    - name: set up user alpha
+      user:
+        name: alpha
+        createhome: no
+        shell: /bin/false
+        groups: alpha,beta,gamma
+
+    - name: set up user beta
+      user:
+        name: beta
+        createhome: no
+        shell: /bin/false
+        groups: beta,gamma
+
+    - name: set up user gamma
+      user:
+        name: gamma
+        createhome: no
+        shell: /bin/false
+        groups: gamma
+
+    - name: install samba server
+      pacman:
+        name: samba
+        state: installed
+
+    - name: set up smb.conf
+      copy:
+        src: ~/.etc/smb.conf
+        dest: /etc/samba/smb.conf
+        validate: 'testparm -s %s'
+
+# Assume resources are mounted
+#    - name: set up mount points
+#      mount:
+#        name: /mnt/green
+#        src: /dev/sda2
+#        fstype: ext4
+#        opts: 'rw,nosuid,nodev,noexec,relatime,user_xattr,acl,barrier=1,data=ordered'
+#        state: mounted
+#
+    - name: set share access rights
+      file:
+        path: /mnt/green
+        group: alpha
+        mode: 0775
+        recurse: no
+
+    - name: (re)start samba server
+      service:
+        name: smbd
+        enabled: yes
+        state: restarted
+
+    - name: (re)start netbios name server
+      service:
+        name: nmbd
+        enabled: yes
+        state: restarted

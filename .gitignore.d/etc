@@ -2,6 +2,7 @@
 !/.etc
 !/.etc/arch_admin.md
 !/.etc/samba.md
+!/.etc/sambaserver.yml
 !/.etc/setup.sh
 !/.etc/tmux.conf
 !/.etc/tonidoplug.md
