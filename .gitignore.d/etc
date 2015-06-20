@@ -1,6 +1,7 @@
 *
 !/.etc
 !/.etc/arch_admin.md
+!/.etc/root.yml
 !/.etc/samba.md
 !/.etc/sambaserver.yml
 !/.etc/setup.sh

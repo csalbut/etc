@@ -1,0 +1,11 @@
+---
+ - hosts: marvin # change to 'hosts where I have root access'
+   sudo: yes
+
+   tasks:
+
+    - command: ln -sf /home/cs/.zshrc /root/
+    - command: ln -sf /home/cs/.oh-my-zsh /root/
+    - command: ln -sf /home/cs/.zsh_custom.d/cezary.zsh-theme /root/.zsh_custom.d
+    - command: ln -sf /home/cs/.vim /root/
+    - command: ln -sf /home/cs/.vimrc /root/
