@@ -8,6 +8,9 @@
 !/.etc/smb.conf
 !/.etc/tmux.conf
 !/.etc/tonidoplug.md
+!/.etc/torrent.yml
+!/.etc/transmission-daemon
+!/.etc/transmission-daemon/settings.mine.json
 !/.gitignore.d
 !/.gitignore.d/etc
 !/README.md

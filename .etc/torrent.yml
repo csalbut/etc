@@ -1,0 +1,58 @@
+---
+ - hosts: marvin
+   sudo: yes
+
+   tasks:
+
+    - name: install transmission
+      pacman:
+        name: transmission-cli
+        state: installed
+
+    - name: make sure the daemon is stopped during setup
+      service:
+        name: transmission
+        enabled: yes
+        state: stopped
+
+    - name: set up groups for user transmission
+      user:
+        name: transmission
+        groups: alpha
+        append: yes
+
+    - name: set up a configuration directory for user 'transmission'
+      file:
+        path: /var/lib/transmission/.config
+        state: directory
+        owner: transmission
+        group: transmission
+
+    - name: set up a configuration directory for user 'cs'
+      file:
+        path: /home/cs/.config/transmission-daemon
+        state: directory
+        owner: cs
+        group: alpha
+
+    - name: customize settings
+      copy:
+          src: /home/cs/.etc/transmission-daemon/settings.mine.json
+          dest: /home/cs/.config/transmission-daemon/settings.json
+          backup: yes
+          owner: transmission
+          group: transmission
+
+    - name: set up a configuration link
+      file:
+        state: link
+        src: /home/cs/.config/transmission-daemon
+        dest: /var/lib/transmission/.config/transmission-daemon
+        owner: transmission
+        group: transmission
+
+    - name: start and enable the daemon
+      service:
+        name: transmission
+        enabled: yes
+        state: started
